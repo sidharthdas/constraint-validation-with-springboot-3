@@ -62,6 +62,8 @@ public class NameSizeGreaterThan5AndStartWithSValidationRule
 
 }
 ```
+In custom validator, we uses ```Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};``` as it will give all the details where which field which class
 
 Dependencies:
 
