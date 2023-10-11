@@ -43,8 +43,6 @@ public class GlobalExceptionHandler {
 
 Spring boot 3:
 
-```
-```
 3. Custom Annotation
 ```
 @Constraint(validatedBy = NameSizeGreaterThan5AndStartWithSValidationRule.class)
