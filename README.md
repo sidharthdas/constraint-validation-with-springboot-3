@@ -53,13 +53,21 @@ Spring boot 3:
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NameSizeGreaterThan5AndStartWithS {
 
-    String message() default "Attribute cant be null, cant be less than 5 and always starts with S";
+    String message() default "Attribute can't be null, cant be less than 5 and always starts with S";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 
+```
+Type of RetentionPolicy:
+1. ```RetentionPolicy.SOURCE```: Discard during the compile. These annotations don't make any sense after the compilation has been completed, so they aren't written to the bytecode. Example: ```@Override```, ```@SuppressWarnings```
+
+2. ```RetentionPolicy.CLASS```: Discard during class load. Useful when doing bytecode-level post-processing. Somewhat surprisingly, this is the default.
+
+3. ```RetentionPolicy.RUNTIME```: Do not discard. The annotation should be available for reflection at runtime. Example: ```@Deprecated```
+
+```
 public class NameSizeGreaterThan5AndStartWithSValidationRule
         implements ConstraintValidator<NameSizeGreaterThan5AndStartWithS, String> {
-
 }
 ```
 In custom validator, we uses ```Class<?>[] groups() default {};
