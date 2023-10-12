@@ -1,8 +1,10 @@
 package com.constraintvalidation.controller;
 
 import com.constraintvalidation.model.Employee;
+import com.constraintvalidation.validator.BeanValidator;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,9 @@ public class EmployeeController {
 
     List<Employee> employeeList = new ArrayList<>();
 
+    @Autowired
+    private BeanValidator validator;
+
     @GetMapping("check-server")
     public String testServer() {
         return "Server is up . . . ";
@@ -24,10 +29,7 @@ public class EmployeeController {
 
     @PostMapping("add")
     public ResponseEntity<Void> addEmployee(@RequestBody Employee employee) {
-        Set<ConstraintViolation<Employee>> v = Validation
-                .buildDefaultValidatorFactory().getValidator().validate(employee);
-
-        v.forEach(violation -> System.out.println(violation.getMessage()));
+        System.out.println(validator.validate(employee));
         employeeList.add(employee);
         return new ResponseEntity<>(HttpStatusCode.valueOf(200));
     }
