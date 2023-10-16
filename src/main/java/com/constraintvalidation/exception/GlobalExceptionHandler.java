@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
     public ProblemDetail getErrors(Exception ee, WebRequest e1) throws URISyntaxException {
         ErrorDetail detail = new ErrorDetail(LocalDateTime.now(), ee.getMessage(), e1.getDescription(false), new LinkedHashMap<>(Map.of("test", "test1")));
         ProblemDetail problemDetail =
-                ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(400), e1.getDescription(true));
+                ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(400), ee.getLocalizedMessage());
 
         problemDetail.setTitle("BAD Request");
         problemDetail.setType(new URI("test"));
