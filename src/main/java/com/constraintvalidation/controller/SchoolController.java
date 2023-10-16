@@ -1,5 +1,6 @@
 package com.constraintvalidation.controller;
 
+import com.constraintvalidation.enums.ValidationEnum;
 import com.constraintvalidation.model.School;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
