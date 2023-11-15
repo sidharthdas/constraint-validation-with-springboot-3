@@ -12,6 +12,13 @@ public class AddressShouldBeOfLengthLessThan30Impl implements ConstraintValidato
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        return s.length() < 30;
+        boolean isValid = s.length() < 30;
+        if (!isValid) {
+            // Add a constraint violation
+            constraintValidatorContext
+                    .buildConstraintViolationWithTemplate("Address should be of less than 30 chars")
+                    .addConstraintViolation();
+        }
+        return isValid;
     }
 }
