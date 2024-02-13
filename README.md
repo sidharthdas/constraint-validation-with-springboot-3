@@ -125,3 +125,35 @@ public static void main(String[] args) throws IllegalAccessException {
         }
     }
 ```
+
+# @Retryable and @Recover
+
+-> Below Dependency needs to be added.
+```
+<dependency>
+    <groupId>org.springframework.retry</groupId>
+    <artifactId>spring-retry</artifactId>
+    <version>2.0.3</version>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-aspects</artifactId>
+    <version>6.0.11</version>
+</dependency>
+```
+-> Need to add ```@EnableRetry``` in the config class or MainApplication class
+-> Need to add ```@Retryable and @Recover ``` like below
+```
+@Retryable(retryFor = RuntimeException.class, maxAttempts = 5)
+    public String getMessage();
+
+    @Recover
+    public String getRecoverMessage();
+```
+
+-> For reference:
+```
+Check class: src/main/java/com/constraintvalidation/service/EmployeeService.java
+Run application and hit API: localhost:8080/api/employee/test-retry
+```
