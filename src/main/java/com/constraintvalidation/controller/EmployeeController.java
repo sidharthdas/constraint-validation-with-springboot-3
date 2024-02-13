@@ -1,6 +1,7 @@
 package com.constraintvalidation.controller;
 
 import com.constraintvalidation.model.Employee;
+import com.constraintvalidation.service.EmployeeService;
 import com.constraintvalidation.validator.BeanValidator;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -22,6 +23,9 @@ public class EmployeeController {
     @Autowired
     private BeanValidator validator;
 
+    @Autowired
+    private EmployeeService employeeService;
+
     @GetMapping("check-server")
     public String testServer() {
         return "Server is up . . . ";
@@ -37,6 +41,11 @@ public class EmployeeController {
     @GetMapping("all-employees")
     public ResponseEntity<List<Employee>> addEmployee() {
         return new ResponseEntity<>(employeeList, HttpStatusCode.valueOf(200));
+    }
+
+    @GetMapping("test-retry")
+    public String getTest() {
+        return employeeService.getMessage();
     }
 
 }

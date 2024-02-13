@@ -4,8 +4,10 @@ import in.ADemo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.web.client.RestTemplate;
 
+@EnableRetry
 @SpringBootApplication
 public class ConstraintvalidationSpringboot3Application {
 

@@ -2,7 +2,7 @@ package com.constraintvalidation.validator.impl;
 
 import com.constraintvalidation.validator.BeanValidator;
 import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestory;
+import jakarta.annotation.PreDestroy;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -32,7 +32,7 @@ public class BeanValidatorImpl implements BeanValidator {
         return result;
     }
 
-    @PreDestory
+    @PreDestroy
     public void close() {
         validatorFactory.close();
     }
